@@ -61,12 +61,12 @@ export const loginAdmin = async(req, res)=>{
 
 
 
-// export const updateUser = async(req, res)=>{
-//     const foundedUser = await userModel.findOne({email: req.params.email});
-//     if(foundedUser)
-//     {
-//         const updatedUser = {...foundedUser, ...req.body.email};
-//         await userModel.findOneAndUpdate({email: req.params.email}, {...updateUser}, {returnDocument: "after"});
-//         res.json({message: "user updated: ", user: updatedUser});
-//     }
-// }
+export const updateUser = async(req, res)=>{
+    const foundedUser = await userModel.findOne({email: req.params.email});
+    if(foundedUser)
+    {
+        const updatedUser = {...foundedUser, ...req.body};
+        await userModel.findOneAndUpdate({email: req.params.email}, {...updateUser}, {returnDocument: "after"});
+        res.json({message: "user updated: ", user: updatedUser});
+    }
+}

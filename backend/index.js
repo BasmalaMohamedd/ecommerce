@@ -1,29 +1,10 @@
 import express from 'express'
 import { dbConnection } from "./db/dbConnection.js";
 import { userRoutes } from "./src/modules/user/user.routes.js";
+import { productRoutes } from './src/modules/product/product.routes.js';
 
 
 // //===============================Products=============================
-
-// const getAllProducts = ()=>{
-
-// }
-
-// const getProductByTitle = ()=>{
-    
-// }
-
-// const getProductById = ()=>{
-
-// }
-
-// const deleteProduct = ()=>{
-
-// }
-
-// const updateProduct = ()=>{
-
-// }
 
 // const decrementQuatityBy = ()=>{
 
@@ -63,7 +44,8 @@ import { userRoutes } from "./src/modules/user/user.routes.js";
 
 const app = express();
 dbConnection;
-app.use(userRoutes)
+app.use(userRoutes);
+app.use(productRoutes);
 
 
  app.listen(3000, ()=>{
