@@ -23,22 +23,50 @@ export const registerUser = async(req, res)=>{
 
 }
 
-export const updateUser = ()=>{
-    console.log("update user");
-    
-}
 
-export const deleteUser = ()=>{
-    console.log("delete user");
-    
+export const deleteUser = async(req, res)=>{
+    const deletedUser = await userModel.findOneAndDelete({email: req.params.email});
+    res.json({message: "User deleted: ", deletedUser});
 
 }
 
 
-export const loginAdmin = ()=>{
+export const loginUser = async(req, res)=>{
+    const foundedUser = await userModel.findOne({email: req.body.email})
+    if(foundedUser){
+        const match = bcrypt.compareSync(req.body.password, foundedUser.password);
+        match ? res.json({message: "user logged in: ", user: foundedUser}): res.json({message: "wrong email or password"});
+
+    }
+    else{
+        res.json({message: "wrong email or password"});
+    }
 
 }
 
-export const loginUser = ()=>{
-    console.log("login user");
+
+export const loginAdmin = async(req, res)=>{
+    const foundedAdmin = await userModel.find({email: req.body.email, role: "admin"})
+    const match = bcrypt.compareSync(req.body.password, foundedAdmin.password);
+    if(foundedAdmin && match)
+    {
+        res.json({message: "admin logged in: ", user: user});
+
+    }
+    else
+    {
+        res.json({message: "wrong email or password"});
+    }
 }
+
+
+
+// export const updateUser = async(req, res)=>{
+//     const foundedUser = await userModel.findOne({email: req.params.email});
+//     if(foundedUser)
+//     {
+//         const updatedUser = {...foundedUser, ...req.body.email};
+//         await userModel.findOneAndUpdate({email: req.params.email}, {...updateUser}, {returnDocument: "after"});
+//         res.json({message: "user updated: ", user: updatedUser});
+//     }
+// }
