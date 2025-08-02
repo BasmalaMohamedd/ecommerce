@@ -1,85 +1,73 @@
-const express = require('express')
-const app = express()
-const port = 3000
+import express from 'express'
+import { dbConnection } from "./db/dbConnection.js";
+import { userRoutes } from "./src/modules/user/user.routes.js";
 
 
-//===============================Users=============================
-const loginUser = ()=>{
+// //===============================Products=============================
 
-}
+// const getAllProducts = ()=>{
 
-const getAllUsers = ()=>{
+// }
 
-}
-
-const updateUser = ()=>{
-
-}
-
-const deleteUser = ()=>{
-
-}
-
-const registerUser = ()=>{
-
-}
-
-
-//===============================Products=============================
-
-const getAllProducts = ()=>{
-
-}
-
-const getProductByTitle = ()=>{
+// const getProductByTitle = ()=>{
     
-}
+// }
 
-const getProductById = ()=>{
+// const getProductById = ()=>{
 
-}
+// }
 
-const deleteProduct = ()=>{
+// const deleteProduct = ()=>{
 
-}
+// }
 
-const updateProduct = ()=>{
+// const updateProduct = ()=>{
 
-}
+// }
 
-const decrementQuatityBy = ()=>{
+// const decrementQuatityBy = ()=>{
 
-}
+// }
 
-const incrementQuatityBy = ()=>{
+// const incrementQuatityBy = ()=>{
 
-}
+// }
 
-//===============================Carts=============================
-const addCart = ()=>{
+// //===============================Carts=============================
+// const addCart = ()=>{
 
-}
+// }
 
-const getCart = ()=>{
+// const getCart = ()=>{
 
-}
+// }
 
-const addProductToCart = ()=>{
+// const addProductToCart = ()=>{
 
-}
+// }
 
-const emptyCart = ()=>{
+// const emptyCart = ()=>{
 
-}
+// }
 
 
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+// app.get('/', (req, res) => {
+//   res.send('Hello World!')
+// })
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`)
+// })
 
+
+const app = express();
+dbConnection;
+app.use(userRoutes)
+
+
+ app.listen(3000, ()=>{
+    console.log("server running");
+    
+ })
 
